@@ -1,13 +1,16 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import React, { useState, useEffect} from 'react';
-export function Navigation() {
+
+const Navigation = () => {
+
     const [isAuth, setIsAuth] = useState(false);
     useEffect(() => {
         if (localStorage.getItem('access_token') !== null) {
         setIsAuth(true); 
         }
     }, [isAuth]);
+
     return ( 
         <div>
             <Navbar bg="dark" variant="dark">
@@ -23,3 +26,5 @@ export function Navigation() {
         </div>
         );
 }
+
+export default Navigation;
