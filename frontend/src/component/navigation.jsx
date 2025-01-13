@@ -19,8 +19,9 @@ const Navigation = () => {
                 {isAuth ? <Nav.Link href="/">Home</Nav.Link> : null}
                 </Nav>
                 <Nav>
-                {isAuth ? <Nav.Link href="/logout">Logout</Nav.Link> :  
-                    <Nav.Link href="/login">Login</Nav.Link>}
+                    <Nav.Link href="/login">Login</Nav.Link>
+                    <div className='w-1/12'></div>
+                    <Nav.Link href="/logout">Logout</Nav.Link>
                 </Nav>
             </Navbar>
         </div>
