@@ -16,6 +16,7 @@ const Login = () => {
             [e.target.name]: e.target.value,
         });
     };
+
     const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null)
@@ -59,43 +60,52 @@ const Login = () => {
     };
 
     return (  
-
-        <div>
-    {error && <p style={{color:"red"}}>{error}</p>}
-            { successMessage && <p style={{color:"green"}}>{successMessage}</p>}
-			<h2>Login:</h2>
-			<form>
-	
-				<label>Username:</label>
-				<br />
-				<input
-					type="string"
-					name="username"
-					value={formData.username}
-					onChange={handleChange}
-				></input>{" "}
-				<br />
-				<br />
-				<label>password:</label>
-				<br />
-				<input
-					type="password"
-					name="password"
-					value={formData.password}
-					onChange={handleChange}
-				></input>{" "}
-				
-				<br />
-        <br/>
-				<button type="submit" disabled={isLoading} onClick={handleSubmit}>
-					Login
-				</button>
-			</form>
-            <Nav>
-                <Nav.Link href="/register">Register</Nav.Link>
-            </Nav>
-		</div>
+        <>
+            <div className="flex w-screen h-screen">
+                <div className="w-1/2 ">
+                    <img src="../src/assets/zooEntrance.jpg" alt="" className="w-full h-5/6 m-10"/>
+                </div>
+                <div className="p-10 m-10">
+                    <h2>Login:</h2>
+                    <form>
+                        <label>Username:</label>
+                        <br />
+                        <input
+                            type="string"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            className="bg-gray-500 border border-red-500"
+                        ></input>{" "}
+                        <br />
+                        <br />
+                        <label>password:</label>
+                        <br />
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="bg-gray-500 border border-red-500"
+                        ></input>{" "}
+                        
+                        <br />
+                <br/>
+                        <button type="submit" disabled={isLoading} onClick={handleSubmit}>
+                            Login
+                        </button>
+                    </form>
+                    <Nav>
+                        <Nav.Link href="/register">Register</Nav.Link>
+                    </Nav>
+                </div>
+            </div>
+        </>
     );
 }
 
 export default Login;
+
+
+{/* {error && <p style={{color:"red"}}>{error}</p>}
+        { successMessage && <p style={{color:"green"}}>{successMessage}</p>} */}
