@@ -5,12 +5,8 @@ const Register = () => {
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-    // const [password2, setPassword2] = useState('');
-
-	const [isLoading, setIsLoading] = useState(false);
-    const [successMessage, setSuccessMessage] = useState(null);
-    const [error, setError] = useState(null)
+	const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
 	
     const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -18,12 +14,11 @@ const Register = () => {
 		const user = {
 			username: username,
 			email: email,
-			password: password
+			password1: password1,
+			password2: password2
 		}
 
-            const {response} = await axios.post('http://localhost:8000/token/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-            console.log("Success!", response.data)
-            setSuccessMessage("Registration Successful!")
+            const {data} = await axios.post('http://localhost:8000/register/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
 
         // window.location.href = '/login'
 
@@ -32,8 +27,6 @@ const Register = () => {
     return ( 
         
         <div>
-            {error && <p style={{color:"red"}}>{error}</p>}
-            { successMessage && <p style={{color:"green"}}>{successMessage}</p>}
 			<h2>Register:</h2>
 			<form>
 				<label>username:</label>
@@ -60,11 +53,11 @@ const Register = () => {
 				<br />
 				<input
 					type="password"
-					name="password"
-					value={password}
-					onChange={e => setPassword(e.target.value)}
+					name="password1"
+					value={password1}
+					onChange={e => setPassword1(e.target.value)}
 				></input>{" "}
-				{/* <br />
+				<br />
 				<br />
 				<label>confirm password:</label>
 				<br />
@@ -73,7 +66,7 @@ const Register = () => {
 					name="password2"
 					value={password2}
 					onChange={e => setPassword2(e.target.value)}
-				></input>{" "} */}
+				></input>{" "}
 				<br />
 				<br />
 				<button type="submit" onClick={handleSubmit}>

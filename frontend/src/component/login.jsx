@@ -15,14 +15,14 @@ const Login = () => {
             password: password
         };
 
-        const {response} = await axios.post('http://localhost:8000/token/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-        
+        const {data} = await axios.post('http://localhost:8000/token/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+        console.log(data)
         localStorage.clear();
-        localStorage.setItem("access_token", response.access);
-        localStorage.setItem("refresh_token", response.refresh);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response['access']}`;
+        localStorage.setItem("access_token", data.access);
+        localStorage.setItem("refresh_token", data.refresh);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`;
     
-            // window.location.href = '/'
+        window.location.href = '/'
 
     };
 
