@@ -13,7 +13,6 @@ const Home = () => {
 
     return (  
         <>
-            <Navigation></Navigation>
             <div className="form-signin mt-5 text-center">
                 <h3>Hi</h3>
             </div>

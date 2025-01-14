@@ -20,7 +20,7 @@ const Register = () => {
 
             const {data} = await axios.post('http://localhost:8000/register/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
 
-        // window.location.href = '/login'
+        window.location.href = '/login'
 
 	};
 

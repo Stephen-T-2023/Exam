@@ -28,16 +28,14 @@ const Login = () => {
 
     return (  
         <>
-            <div className="flex w-screen h-screen">
-                <div className="w-1/2 ">
-                    <img src="../src/assets/zooEntrance.jpg" alt="" className="w-full h-5/6 m-10"/>
-                </div>
-                <div className="p-10 m-10 justify-center content-center w-1/2 flex">
-                    <div className="rounded bg-red-600">
-                        <h2 className="w-full text-xl">Login:</h2>
+            <div className="flex flex-wrap w-screen h-screen">
+                <div className="w-full h-2/6 m-10 bg-zooEntrance bg-no-repeat bg-cover rounded"/>
+                <div className="w-full h-3/6 flex flex-wrap">
+                    <div className="flex bg-red-600 w-full text-3xl text-left content-center">
+                        Login:
                     </div>
-                    <form>
-                        <label>Email:
+                    <form className="w-full justify-center text-2xl flex flex-col place-items-center">
+                        <label>Email:</label>
                         <br />
                         <input
                             type="string"
@@ -45,12 +43,10 @@ const Login = () => {
                             value={email}
                             required
                             onChange={e => setEmail(e.target.value)}
-                            className="bg-gray-500 border border-red-500"
-                        ></input>{" "}
-                        </label>
+                            className="bg-gray-500 border w-5/6"
+                        ></input>{""}
                         <br />
-                        <br />
-                        <label>password:
+                        <label>Password:</label>
                         <br />
                         <input
                             type="password"
@@ -58,17 +54,14 @@ const Login = () => {
                             value={password}
                             required
                             onChange={e => setPassword(e.target.value)}
-                            className="bg-gray-500 border border-red-500"
+                            className="bg-gray-500 border w-5/6"
                         ></input>{" "}
-                        </label>
-                        
                         <br />
-                <br/>
                         <button type="submit" onClick={handleSubmit}>
                             Login
                         </button>
                     </form>
-                    <Nav>
+                    <Nav className="w-full">
                         <Nav.Link href="/register">Register</Nav.Link>
                     </Nav>
                 </div>
