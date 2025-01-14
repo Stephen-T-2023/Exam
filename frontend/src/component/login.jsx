@@ -4,58 +4,25 @@ import Nav from 'react-bootstrap/Nav';
 
 const Login = () => {
 
-    const [formData, setFormData] = useState({
-        username:"",
-        password:""
-    })
-
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [successMessage, setSuccessMessage] = useState(null);
-    const [error, setError] = useState(null)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-            if(isLoading){
-                return
-            }
+            
+        const user = {
+            email : email,
+            password: password
+        };
 
-            setIsLoading(true);
-
-            try{
-                const response = await axios.post('http://localhost:8000/token/', formData, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-                console.log("Success!", response.data)
-                setSuccessMessage("Login Successful!")
-                localStorage.clear();
-                localStorage.setItem("accessToken", response.access);
-                localStorage.setItem("refreshToken", response.refresh);
-                axios.defaults.headers.common['Authorization'] = 
-                                        `Bearer ${data['access']}`;
-
-            }
-            catch(error){
-                console.log("Error during Login!", error.response?.data);
-                if(error.response && error.response.data){
-                    Object.keys(error.response.data).forEach(field => {
-                        const errorMessages = error.response.data[field];
-                        if(errorMessages && errorMessages.length > 0){
-                            setError(errorMessages[0]);
-                        }
-                    })
-                }
-            }
-            finally{
-                setIsLoading(false)
-            }
+        const {response} = await axios.post('http://localhost:8000/token/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+        
+        localStorage.clear();
+        localStorage.setItem("access_token", response.access);
+        localStorage.setItem("refresh_token", response.refresh);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${response['access']}`;
     
-            window.location.href = '/'
+            // window.location.href = '/'
 
     };
 
@@ -65,33 +32,39 @@ const Login = () => {
                 <div className="w-1/2 ">
                     <img src="../src/assets/zooEntrance.jpg" alt="" className="w-full h-5/6 m-10"/>
                 </div>
-                <div className="p-10 m-10">
-                    <h2>Login:</h2>
+                <div className="p-10 m-10 justify-center content-center w-1/2 flex">
+                    <div className="rounded bg-red-600">
+                        <h2 className="w-full text-xl">Login:</h2>
+                    </div>
                     <form>
-                        <label>Username:</label>
+                        <label>Email:
                         <br />
                         <input
                             type="string"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
+                            name="email"
+                            value={email}
+                            required
+                            onChange={e => setEmail(e.target.value)}
                             className="bg-gray-500 border border-red-500"
                         ></input>{" "}
+                        </label>
                         <br />
                         <br />
-                        <label>password:</label>
+                        <label>password:
                         <br />
                         <input
                             type="password"
                             name="password"
-                            value={formData.password}
-                            onChange={handleChange}
+                            value={password}
+                            required
+                            onChange={e => setPassword(e.target.value)}
                             className="bg-gray-500 border border-red-500"
                         ></input>{" "}
+                        </label>
                         
                         <br />
                 <br/>
-                        <button type="submit" disabled={isLoading} onClick={handleSubmit}>
+                        <button type="submit" onClick={handleSubmit}>
                             Login
                         </button>
                     </form>

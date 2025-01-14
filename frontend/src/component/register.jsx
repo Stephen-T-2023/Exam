@@ -3,52 +3,29 @@ import axios from "axios";
 
 const Register = () => {
 
-    const [formData, setFormData] = useState({
-		username: "",
-		email: "",
-		password1: "",
-		password2: "",
-	});
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+    // const [password2, setPassword2] = useState('');
 
-	const handleChange = (e) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		});
-	};
 	const [isLoading, setIsLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
     const [error, setError] = useState(null)
 	
     const handleSubmit = async (e) => {
 		e.preventDefault();
-        if(isLoading){
-            return
-        }
 
-        setIsLoading(true);
+		const user = {
+			username: username,
+			email: email,
+			password: password
+		}
 
-        try{
-            const response = await axios.post('http://localhost:8000/token/', formData, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+            const {response} = await axios.post('http://localhost:8000/token/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
             console.log("Success!", response.data)
             setSuccessMessage("Registration Successful!")
-        }
-        catch(error){
-            console.log("Error during registration!", error.response?.data);
-            if(error.response && error.response.data){
-                Object.keys(error.response.data).forEach(field => {
-                    const errorMessages = error.response.data[field];
-                    if(errorMessages && errorMessages.length > 0){
-                        setError(errorMessages[0]);
-                    }
-                })
-            }
-        }
-        finally{
-            setIsLoading(false)
-        }
 
-        window.location.href = '/login'
+        // window.location.href = '/login'
 
 	};
 
@@ -64,8 +41,8 @@ const Register = () => {
 				<input
 					type="text"
 					name="username"
-					value={formData.username}
-					onChange={handleChange}
+					value={username}
+					onChange={e => setUsername(e.target.value)}
 				></input>{" "}
 				<br />
 				<br />
@@ -74,8 +51,8 @@ const Register = () => {
 				<input
 					type="email"
 					name="email"
-					value={formData.email}
-					onChange={handleChange}
+					value={email}
+					onChange={e => setEmail(e.target.value)}
 				></input>{" "}
 				<br />
 				<br />
@@ -83,23 +60,23 @@ const Register = () => {
 				<br />
 				<input
 					type="password"
-					name="password1"
-					value={formData.password1}
-					onChange={handleChange}
+					name="password"
+					value={password}
+					onChange={e => setPassword(e.target.value)}
 				></input>{" "}
-				<br />
+				{/* <br />
 				<br />
 				<label>confirm password:</label>
 				<br />
 				<input
 					type="password"
 					name="password2"
-					value={formData.password2}
-					onChange={handleChange}
-				></input>{" "}
+					value={password2}
+					onChange={e => setPassword2(e.target.value)}
+				></input>{" "} */}
 				<br />
 				<br />
-				<button type="submit" disabled={isLoading} onClick={handleSubmit}>
+				<button type="submit" onClick={handleSubmit}>
 					Register
 				</button>
 			</form>
