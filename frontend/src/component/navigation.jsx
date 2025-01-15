@@ -13,15 +13,13 @@ const Navigation = () => {
 
     return ( 
         <div>
-            <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/">JWT Authentification</Navbar.Brand>            
+            <Navbar bg="dark" variant="dark" className='text-white flex w-screen bg-slate-400'>
+                <Navbar.Brand href="/">Riget Zoo Adventures</Navbar.Brand>            
                 <Nav className="me-auto"> 
                 {isAuth ? <Nav.Link href="/">Home</Nav.Link> : null}
                 </Nav>
                 <Nav>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <div className='w-1/12'></div>
-                    <Nav.Link href="/logout">Logout</Nav.Link>
+                    {isAuth ? <Nav.Link href="/logout">Logout</Nav.Link> : <Nav.Link href="/login">Login</Nav.Link>}
                 </Nav>
             </Navbar>
         </div>

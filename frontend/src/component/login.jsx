@@ -31,10 +31,10 @@ const Login = () => {
             <div className="flex flex-wrap w-screen h-screen">
                 <div className="w-full h-2/6 m-10 bg-zooEntrance bg-no-repeat bg-cover rounded"/>
                 <div className="w-full h-3/6 flex flex-wrap">
-                    <div className="flex bg-red-600 w-full text-3xl text-left content-center">
+                    <div className="flex bg-red-600 w-full text-6xl text-left content-center font-heading">
                         Login:
                     </div>
-                    <form className="w-full justify-center text-2xl flex flex-col place-items-center">
+                    <form className="w-full justify-center text-2xl flex flex-col place-items-center font-body">
                         <label>Email:</label>
                         <br />
                         <input
@@ -57,12 +57,12 @@ const Login = () => {
                             className="bg-gray-500 border w-5/6"
                         ></input>{" "}
                         <br />
-                        <button type="submit" onClick={handleSubmit}>
+                        <button type="submit" onClick={handleSubmit} className="border">
                             Login
                         </button>
                     </form>
-                    <Nav className="w-full">
-                        <Nav.Link href="/register">Register</Nav.Link>
+                    <Nav className="w-full text-xl text-center">
+                        <Nav.Link href="/register">Don't have an account? Click here.</Nav.Link>
                     </Nav>
                 </div>
             </div>
