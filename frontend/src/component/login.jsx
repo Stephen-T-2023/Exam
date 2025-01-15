@@ -38,23 +38,25 @@ const Login = () => {
                         <label>Email:</label>
                         <br />
                         <input
+                            placeholder="e.g example@email.com"
                             type="string"
                             name="email"
                             value={email}
                             required
                             onChange={e => setEmail(e.target.value)}
-                            className="bg-gray-500 border w-5/6"
+                            className="bg-gray-500 border w-5/6 rounded-md"
                         ></input>{""}
                         <br />
                         <label>Password:</label>
                         <br />
                         <input
+                            placeholder="At least 8 characters"
                             type="password"
                             name="password"
                             value={password}
                             required
                             onChange={e => setPassword(e.target.value)}
-                            className="bg-gray-500 border w-5/6"
+                            className="bg-gray-500 border w-5/6 rounded-md"
                         ></input>{" "}
                         <br />
                         <button type="submit" onClick={handleSubmit} className="border">
