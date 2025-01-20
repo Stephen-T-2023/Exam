@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navigation from "./navigation";
 
 const Home = () => {
 
-    const navigate = useNavigate();
-
     const makeBookings = () => {
-        navigate('/booking')
+        window.location.href = '/booking'
     }
     const manageBookings = () => {
-        navigate('/manage')
+        window.location.href = '/manage'
     }
     const zooMap = () => {
-        navigate('/map')
+        window.location.href = '/map'
     }
     const aboutUs = () => {
-        navigate('/about')
+        window.location.href = '/about'
     }
 
     useEffect(() => {
