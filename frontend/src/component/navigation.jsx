@@ -14,7 +14,7 @@ const Navigation = () => {
     return ( 
         <div>
             <Navbar bg="dark" variant="dark" className='text-white flex w-screen bg-slate-400'>
-                <Navbar.Brand href="/" >Riget Zoo Adventures</Navbar.Brand>
+                <Navbar.Brand href="/" className='flex-grow'>Riget Zoo Adventures</Navbar.Brand>
                 <Nav>
                     {isAuth ? <Nav.Link href="/logout" >Logout</Nav.Link> : <Nav.Link href="/login">Login</Nav.Link>}
                 </Nav>

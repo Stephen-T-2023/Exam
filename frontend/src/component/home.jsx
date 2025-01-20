@@ -5,7 +5,7 @@ import Navigation from "./navigation";
 const Home = () => {
 
     const makeBookings = () => {
-        window.location.href = '/booking'
+        window.location.href = '/bookingchoice'
     }
     const manageBookings = () => {
         window.location.href = '/manage'
@@ -27,21 +27,21 @@ const Home = () => {
     return (  
         <div className="flex flex-wrap w-screen h-screen bg-black">
             <Navigation></Navigation>
-            <button className="w-full h-1/5 items-center" onClick={() => {makeBookings()}}>
-                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover mx-10"></div>
-                <div className="w-10/12 bg-orange-300 mx-10">Make Bookings</div>
+            <button className="w-full h-1/5 place-items-center" onClick={() => {makeBookings()}}>
+                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover"></div>
+                <div className="w-10/12 bg-orange-300">Make Bookings</div>
             </button>
-            <button className="w-full h-1/5 items-center" onClick={() => {manageBookings()}}>
-                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover mx-10"></div>
-                <div className="w-10/12 bg-orange-300 mx-10">Manage Bookings</div>
+            <button className="w-full h-1/5  place-items-center" onClick={() => {manageBookings()}}>
+                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover"></div>
+                <div className="w-10/12 bg-orange-300">Manage Bookings</div>
             </button>
-            <button className="w-full h-1/5 items-center" onClick={() => {zooMap()}}>
-                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover mx-10"></div>
-                <div className="w-10/12 bg-orange-300 mx-10">Map of the Zoo</div>
+            <button className="w-full h-1/5 place-items-center" onClick={() => {zooMap()}}>
+                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover"></div>
+                <div className="w-10/12 bg-orange-300">Map of the Zoo</div>
             </button>
-            <button className="w-full h-1/5 items-center" onClick={() => {aboutUs()}}>
-                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover mx-10"></div>
-                <div className="w-10/12 bg-orange-300 mx-10">About us</div>
+            <button className="w-full h-1/5 place-items-center" onClick={() => {aboutUs()}}>
+                <div className="w-10/12 h-5/6 bg-zooEntrance bg-no-repeat bg-cover"></div>
+                <div className="w-10/12 bg-orange-300">About us</div>
             </button>
         </div>
     );
