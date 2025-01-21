@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navigation from "./navigation";
+import Navigation from "../component/navigation";
 
 const Tickets = () => {
 
@@ -13,7 +13,9 @@ const Tickets = () => {
     return ( 
         <div className="flex flex-wrap flex-col w-screen h-screen bg-lime-300">
             <Navigation></Navigation>
-            <div className="flex bg-red-600 w-full text-6xl text-left content-center font-heading">Tickets:</div>
+            <div className="flex justify-center text-3xl font-bold text-green-600 mb-6">
+                Tickets:
+            </div>
             <div className="w-full h-1/5 place-items-center content-center border-black border-2 text-2xl font-body">
                 <h2>Adult Tickets</h2>
                 <p>Age 16 and over: £20.00 <button className="border-2 border-black" onClick={() => {setAdult(adult+1), setPrice(price+10)}}>{adult}</button></p>
