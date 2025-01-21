@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navigation from "../component/navigation";
+import { jwtDecode } from "jwt-decode"
 
 const Home = () => {
 
@@ -8,8 +9,10 @@ const Home = () => {
         if(localStorage.getItem('access_token') === null){                   
             window.location.href = '/login'
         }
-        
-        });
+        const token = localStorage.getItem('access_token')
+        const decoded = jwtDecode(token);
+        console.log(decoded)
+        }, []);
 
     return (  
         <>
