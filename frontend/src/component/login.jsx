@@ -28,44 +28,48 @@ const Login = () => {
 
     return (  
         <>
-            <div className="flex flex-wrap w-screen h-screen">
-                <div className="w-full h-2/6 m-10 bg-zooEntrance bg-no-repeat bg-cover rounded"/>
-                <div className="w-full h-3/6 flex flex-wrap">
-                    <div className="flex bg-red-600 w-full text-6xl text-left content-center font-heading">
-                        Login:
+            <div className="flex flex-col w-full h-screen bg-gray-400">
+                <div className="w-full h-1/3 bg-zooEntrance bg-no-repeat bg-cover rounded-b-xl">
+                </div>
+                <div className="w-full h-2/3 p-6 rounded-t-xl">
+                    <div className="flex justify-center text-3xl font-bold text-green-600 mb-6">
+                        Login
                     </div>
-                    <form className="w-full justify-center text-2xl flex flex-col place-items-center font-body">
-                        <label>Email:</label>
-                        <br />
-                        <input
-                            placeholder="e.g example@email.com"
-                            type="string"
-                            name="email"
-                            value={email}
-                            required
-                            onChange={e => setEmail(e.target.value)}
-                            className="bg-gray-500 border w-5/6 rounded-md"
-                        ></input>{""}
-                        <br />
-                        <label>Password:</label>
-                        <br />
-                        <input
-                            placeholder="At least 8 characters"
-                            type="password"
-                            name="password"
-                            value={password}
-                            required
-                            onChange={e => setPassword(e.target.value)}
-                            className="bg-gray-500 border w-5/6 rounded-md"
-                        ></input>{" "}
-                        <br />
-                        <button type="submit" onClick={handleSubmit} className="border">
+                    <form className="flex flex-col items-center space-y-4 text-lg">
+                        <div className="w-full">
+                            <label for="email" class="block text-lg font-medium text-gray-700">Email:</label>
+                            <input
+                                id="email"
+                                placeholder="e.g example@email.com"
+                                type="email"
+                                name="email"
+                                required
+                                onChange={e => setEmail(e.target.value)}
+                                className="w-full p-3 bg-gray-200 border border-gray-300 rounded-md text-lg"/>
+                        </div>
+                        <div className="w-full">
+                            <label for="password" class="block text-lg font-medium text-gray-700">Password:</label>
+                            <input
+                                id="password"
+                                placeholder="At least 8 characters"
+                                type="password"
+                                name="password"
+                                required
+                                onChange={e => setPassword(e.target.value)}
+                                className="w-full p-3 bg-gray-200 border border-gray-300 rounded-md text-lg"/>
+                        </div>
+                        <button
+                            type="submit"
+                            onClick={handleSubmit}
+                            className="w-full py-3 bg-green-600 text-white text-xl rounded-md hover:bg-green-700 transition-all">
                             Login
                         </button>
                     </form>
-                    <Nav className="w-full text-xl text-center">
-                        <Nav.Link href="/register">Don't have an account? Click here.</Nav.Link>
-                    </Nav>
+                    <div className="text-center mt-6">
+                        <Nav className="text-md text-green-600">
+                            <Nav.Link href="/register" className="hover:text-green-800">Don't have an account? Click here.</Nav.Link>
+                        </Nav>
+                    </div>
                 </div>
             </div>
         </>

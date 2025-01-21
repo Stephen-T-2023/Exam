@@ -1,18 +1,34 @@
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-
 const Navigation = () => {
 
     return ( 
-        <div>
-            <Navbar bg="dark" variant="dark" className='text-white flex w-screen bg-slate-400'>
-                <Navbar.Brand href="/" className='flex-grow border-black border-2'>Riget Zoo Adventures</Navbar.Brand>
-                <Nav.Link href='/bookingchoice' className='px-5 border-black border-2'>Shop</Nav.Link>
-                <Nav.Link href='/map' className='px-5 border-black border-2'>Map</Nav.Link>
-                <Nav.Link href='/about' className='px-5 border-black border-2'>About</Nav.Link>
-                <Nav.Link href="/logout" className='px-5 border-black border-2'>Logout</Nav.Link>
-            </Navbar>
-        </div>
+        <>
+            <div className="w-full bg-green-600">
+                <nav className="flex items-center justify-between p-4 bg-green-600 text-white">
+                    <a href="/" className="text-2xl font-bold px-4 py-2 rounded-md">
+                        Riget Zoo Adventures
+                    </a>
+                    <div className="hidden md:flex space-x-4">
+                        <a href="/bookingchoice" className="px-4 py-2 border-2 border-white rounded-md hover:bg-green-700 hover:text-white transition-all">
+                            Shop
+                        </a>
+                        <a href="/map" className="px-4 py-2 border-2 border-white rounded-md hover:bg-green-700 hover:text-white transition-all">
+                            Map
+                        </a>
+                        <a href="/about" className="px-4 py-2 border-2 border-white rounded-md hover:bg-green-700 hover:text-white transition-all">
+                            About
+                        </a>
+                        <a href="/logout" className="px-4 py-2 border-2 border-white rounded-md hover:bg-green-700 hover:text-white transition-all">
+                            Logout
+                        </a>
+                    </div>
+                    <div className="md:hidden">
+                        <button className="text-xl text-white">
+                            <i className="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </>
         );
 }
 

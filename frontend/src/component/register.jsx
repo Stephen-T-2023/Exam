@@ -27,56 +27,75 @@ const Register = () => {
 
     return ( 
         
-        <div className="flex flex-wrap w-screen h-screen">
-			<div className="w-full h-2/6 m-2 bg-zooEntrance bg-no-repeat bg-cover rounded"/>
-			<div className="w-full h-3/6 flex flex-wrap">
-				<div className="flex bg-red-600 w-full text-4xl text-left content-center font-heading">Register:</div>
-				<form className="w-full justify-center text-xl flex flex-col place-items-center font-body">
-					<label>username:</label>
-					<input
-						type="text"
-						name="username"
-						value={username}
-						onChange={e => setUsername(e.target.value)}
-						className="bg-gray-500 border w-5/6 rounded-md"
-					></input>{" "}
-					<br />
-					<label>email:</label>
-					<input
-						type="email"
-						name="email"
-						value={email}
-						onChange={e => setEmail(e.target.value)}
-						className="bg-gray-500 border w-5/6 rounded-md"
-					></input>{" "}
-					<br />
-					<label>password:</label>
-					<input
-						type="password"
-						name="password1"
-						value={password1}
-						onChange={e => setPassword1(e.target.value)}
-						className="bg-gray-500 border w-5/6 rounded-md"
-					></input>{" "}
-					<br />
-					<label>confirm password:</label>
-					<input
-						type="password"
-						name="password2"
-						value={password2}
-						onChange={e => setPassword2(e.target.value)}
-						className="bg-gray-500 border w-5/6 rounded-md"
-					></input>{" "}
-					<br />
-					<button type="submit" onClick={handleSubmit}>
+        <>
+			<div className="flex flex-col w-full h-screen bg-gray-400">
+				<div className="w-full h-1/3 bg-zooEntrance bg-no-repeat bg-cover rounded-b-xl">
+				</div>
+				<div className="w-full h-2/3 p-6 rounded-t-xl">
+					<div className="flex justify-center text-3xl font-bold text-green-600 mb-6">
 						Register
-					</button>
-				</form>
-				<Nav className="w-full text-xl text-center">
-                    <Nav.Link href="/login">Have an account? Click here.</Nav.Link>
-                </Nav>
+					</div>
+					<form className="flex flex-col items-center space-y-4 text-lg">
+						<div className="w-full">
+							<label for="username" class="block text-lg font-medium text-gray-700">Username:</label>
+							<input
+								id="username"
+								type="text"
+								name="username"
+								value={username}
+								onChange={e => setUsername(e.target.value)}
+								required
+								className="w-full p-3 bg-gray-200 border border-gray-300 rounded-md text-lg"/>
+						</div>
+						<div className="w-full">
+							<label for="email" class="block text-lg font-medium text-gray-700">Email:</label>
+							<input
+								id="email"
+								type="email"
+								name="email"
+								value={email}
+								onChange={e => setEmail(e.target.value)}
+								required
+								className="w-full p-3 bg-gray-200 border border-gray-300 rounded-md text-lg"/>
+						</div>
+						<div className="w-full">
+							<label for="password1" class="block text-lg font-medium text-gray-700">Password:</label>
+							<input
+								id="password1"
+								type="password"
+								name="password1"
+								value={password1}
+								onChange={e => setPassword1(e.target.value)}
+								required
+								className="w-full p-3 bg-gray-200 border border-gray-300 rounded-md text-lg"/>
+						</div>
+						<div className="w-full">
+							<label for="password2" class="block text-lg font-medium text-gray-700">Confirm Password:</label>
+							<input
+								id="password2"
+								type="password"
+								name="password2"
+								value={password2}
+								onChange={e => setPassword2(e.target.value)}
+								required
+								className="w-full p-3 bg-gray-200 border border-gray-300 rounded-md text-lg"/>
+						</div>
+						<button
+							type="submit"
+							onClick={handleSubmit}
+							className="w-full py-3 bg-green-600 text-white text-xl rounded-md hover:bg-green-700 transition-all">
+							Register
+						</button>
+					</form>
+
+					<div className="text-center mt-6">
+						<Nav className="text-md text-green-600">
+							<Nav.Link href="/login" className="hover:text-green-800">Have an account? Click here.</Nav.Link>
+						</Nav>
+					</div>
+				</div>
 			</div>
-		</div>
+		</>
 
     );
 }
