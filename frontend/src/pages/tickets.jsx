@@ -4,6 +4,18 @@ import { jwtDecode } from "jwt-decode"
 import { v1 as uuidv4 } from "uuid"
 
 const Tickets = () => {
+
+    const [ticket_id, setTicket_ID] = useState()
+
+    useEffect(() => {
+        if(localStorage.getItem('access_token') === null){                   
+            window.location.href = '/login'
+        }
+        const token = localStorage.getItem('access_token')
+        const decoded = jwtDecode(token);
+        
+        }, []);
+
     const [tickets, setTickets] = useState({
         Adult: 0,
         Young: 0,
