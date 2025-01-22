@@ -38,7 +38,7 @@ class UserRegistrationAPIView(GenericAPIView):
         return Response(data, status= status.HTTP_201_CREATED)
 
 class TicketBookingView(APIView):
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
     serializer_class = TicketBookingSerializer
 
     def get(self, request):
