@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navigation from "../component/navigation";
 import { jwtDecode } from "jwt-decode"
 import { v1 as uuidv4 } from "uuid"
+import axios from "axios";
 
 const Tickets = () => {
 
@@ -11,9 +12,9 @@ const Tickets = () => {
         if(localStorage.getItem('access_token') === null){                   
             window.location.href = '/login'
         }
-        const token = localStorage.getItem('access_token')
-        const decoded = jwtDecode(token);
         
+        setTicket_ID(uuidv4())
+
         }, []);
 
     const [tickets, setTickets] = useState({
@@ -55,6 +56,20 @@ const Tickets = () => {
     };
 
     const checkout = () => {
+
+        const token = localStorage.getItem('access_token');
+        const decoded = jwtDecode(token);
+
+        setTicket_ID(uuidv4())
+
+        const booking = {
+            User_id: decoded.user_id,
+            Ticket_id: ticket_id,
+            Ticket_type: "Adult",
+        }
+
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
+        axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
 
     };
 
