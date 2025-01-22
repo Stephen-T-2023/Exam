@@ -12,9 +12,8 @@ const Tickets = () => {
         if(localStorage.getItem('access_token') === null){                   
             window.location.href = '/login'
         }
-        
-        setTicket_ID(uuidv4())
-
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
+        // setTicket_ID(uuidv4());
         }, []);
 
     const [tickets, setTickets] = useState({
@@ -57,20 +56,20 @@ const Tickets = () => {
 
     const checkout = () => {
 
-        const token = localStorage.getItem('access_token');
-        const decoded = jwtDecode(token);
+        const totalTickets = tickets.Adult + tickets.Young + tickets.Child + tickets.Infant
 
-        setTicket_ID(uuidv4())
+        for (let i=0; i < totalTickets; i++){
 
-        const booking = {
-            User_id: decoded.user_id,
-            Ticket_id: ticket_id,
-            Ticket_type: "Adult",
+            const token = localStorage.getItem('access_token');
+            const decoded = jwtDecode(token);
+
+            const booking = {
+                User_id: decoded.user_id,
+                Ticket_type: "Adult",
+            };
+
+            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
         }
-
-        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
-        axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-
     };
 
   return (

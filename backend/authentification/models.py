@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
@@ -11,5 +12,5 @@ class CustomUser(AbstractUser):
 
 class TicketBooking(models.Model):
     User_id = models.CharField(max_length=1000)
-    Ticket_id = models.CharField(max_length=1000)
+    Ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     Ticket_type = models.CharField(max_length=20)

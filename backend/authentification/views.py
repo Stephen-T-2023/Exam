@@ -42,6 +42,7 @@ class TicketBookingView(APIView):
     serializer_class = TicketBookingSerializer
 
     def get(self, request):
+
         ticket_id = [{"User_id": ticket_id.User_id, "Ticket_id": ticket_id.Ticket_id, "Ticket_type": ticket_id.Ticket_type} for ticket_id in TicketBooking.objects.all()]
         return Response(ticket_id)
 
