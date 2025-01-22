@@ -36,3 +36,17 @@ class UserRegistrationAPIView(GenericAPIView):
         data = serializer.data
         data["tokens"] = {"refresh":str(token), "access": str(token.access_token)}
         return Response(data, status= status.HTTP_201_CREATED)
+
+class TicketBookingView(APIView):
+    # permission_classes = (IsAuthenticated, )
+    serializer_class = TicketBookingSerializer
+
+    def get(self, request):
+        ticket_id = [{"User_id": ticket_id.User_id, "Ticket_id": ticket_id.Ticket_id, "Ticket_type": ticket_id.Ticket_type} for ticket_id in TicketBooking.objects.all()]
+        return Response(ticket_id)
+
+    def post(self, request):
+        serializer = TicketBookingSerializer(data=request.data)
+        if serializer.is_valid(raise_exception = True):
+            serializer.save()
+            return Response(serializer.data)

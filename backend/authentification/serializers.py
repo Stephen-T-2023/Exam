@@ -1,4 +1,4 @@
-from .models import CustomUser
+from .models import *
 from rest_framework import serializers
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -32,3 +32,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         validated_data.pop("password2")
 
         return CustomUser.objects.create_user(password=password, **validated_data)
+
+class TicketBookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TicketBooking
+        fields = ["User_id", "Ticket_id", "Ticket_type"]
