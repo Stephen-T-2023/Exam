@@ -58,8 +58,8 @@ const Tickets = () => {
 
         const totalTickets = tickets.Adult + tickets.Young + tickets.Child + tickets.Infant
 
-        for (let i=0; i < totalTickets; i++){
-
+        for (var i=0; i < totalTickets; i++){
+            const [tickettype, setTicketType] = useState()
             const token = localStorage.getItem('access_token');
             const decoded = jwtDecode(token);
 
