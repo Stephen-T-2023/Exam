@@ -66,7 +66,6 @@ const Reservations = () => {
             };
 
             axios.post('http://localhost:8000/hotels/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-            alert("Your Payment has been processed")
         }
     };
 
@@ -93,6 +92,7 @@ const Reservations = () => {
                         className="border p-2 w-20 text-center"
                         value={roomtypes[ticketType]}
                         min="0"
+                        max="10"
                         onChange={(e) =>
                             handleHotelChange(ticketType, parseInt(e.target.value) || 0)}/>
                 </div>
@@ -108,7 +108,6 @@ const Reservations = () => {
             <input
                 type="date"
                 className="border p-2 w-full text-center"
-                value={endDate}
                 min={new Date().toJSON().slice(0, 10)}
                 onChange={(e) => setEndDate(e.target.value)}/>
         </div>

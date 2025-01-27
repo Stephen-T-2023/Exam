@@ -4,9 +4,6 @@ import { jwtDecode } from "jwt-decode"
 import axios from "axios";
 
 const Tickets = () => {
-
-    const [ticket_id, setTicket_ID] = useState()
-
     useEffect(() => {
         if(localStorage.getItem('access_token') === null){                   
             window.location.href = '/login'
@@ -53,11 +50,7 @@ const Tickets = () => {
     };
 
     const checkout = () => {
-
-        const totalTickets = tickets.Adult + tickets.Young + tickets.Child + tickets.Infant
-
-        for (var i=0; i < totalTickets; i++){
-            const [tickettype, setTicketType] = useState()
+        for (var i=0; i < tickets.Adult; i++){
             const token = localStorage.getItem('access_token');
             const decoded = jwtDecode(token);
 
@@ -68,9 +61,42 @@ const Tickets = () => {
 
             axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
         }
+        for (var i=0; i < tickets.Young; i++){
+            const token = localStorage.getItem('access_token');
+            const decoded = jwtDecode(token);
+
+            const booking = {
+                User_id: decoded.user_id,
+                Ticket_type: "Young",
+            };
+
+            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+        }
+        for (var i=0; i < tickets.Child; i++){
+            const token = localStorage.getItem('access_token');
+            const decoded = jwtDecode(token);
+
+            const booking = {
+                User_id: decoded.user_id,
+                Ticket_type: "Child",
+            };
+
+            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+        }
+        for (var i=0; i < tickets.Infant; i++){
+            const token = localStorage.getItem('access_token');
+            const decoded = jwtDecode(token);
+
+            const booking = {
+                User_id: decoded.user_id,
+                Ticket_type: "Infant",
+            };
+
+            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+        }
     };
 
-  return (
+    return (
     <>
         <div className="flex flex-col w-screen h-auto bg-gray-300 min-h-screen">
             <Navigation />
@@ -93,6 +119,7 @@ const Tickets = () => {
                         className="border p-2 w-20 text-center"
                         value={tickets[ticketType]}
                         min="0"
+                        max="10"
                         onChange={(e) =>
                             handleTicketChange(ticketType, parseInt(e.target.value) || 0)}/>
                 </div>
