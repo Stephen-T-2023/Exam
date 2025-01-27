@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../component/navigation";
-import { jwtDecode } from "jwt-decode"
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 const Tickets = () => {
     useEffect(() => {
-        if(localStorage.getItem('access_token') === null){                   
-            window.location.href = '/login'
+        if (localStorage.getItem('access_token') === null) {
+            window.location.href = '/login';
         }
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
-        }, []);
+    }, []);
 
     const [tickets, setTickets] = useState({
         Adult: 0,
@@ -32,10 +32,10 @@ const Tickets = () => {
             const updatedTickets = { ...tickets, [ticketType]: value };
             setTickets(updatedTickets);
             const newTotalPrice = Object.keys(updatedTickets).reduce(
-            (total, type) => total + updatedTickets[type] * ticketPrices[type],
-            0
-        );
-        setPrice(newTotalPrice);
+                (total, type) => total + updatedTickets[type] * ticketPrices[type],
+                0
+            );
+            setPrice(newTotalPrice);
         }
     };
 
@@ -50,84 +50,57 @@ const Tickets = () => {
     };
 
     const checkout = () => {
-        for (var i=0; i < tickets.Adult; i++){
-            const token = localStorage.getItem('access_token');
-            const decoded = jwtDecode(token);
+        const token = localStorage.getItem('access_token');
+        const decoded = jwtDecode(token);
 
-            const booking = {
-                User_id: decoded.user_id,
-                Ticket_type: "Adult",
-            };
+        Object.keys(tickets).forEach(ticketType => {
+            for (let i = 0; i < tickets[ticketType]; i++) {
+                const booking = {
+                    User_id: decoded.user_id,
+                    Ticket_type: ticketType,
+                };
 
-            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-        }
-        for (var i=0; i < tickets.Young; i++){
-            const token = localStorage.getItem('access_token');
-            const decoded = jwtDecode(token);
-
-            const booking = {
-                User_id: decoded.user_id,
-                Ticket_type: "Young",
-            };
-
-            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-        }
-        for (var i=0; i < tickets.Child; i++){
-            const token = localStorage.getItem('access_token');
-            const decoded = jwtDecode(token);
-
-            const booking = {
-                User_id: decoded.user_id,
-                Ticket_type: "Child",
-            };
-
-            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-        }
-        for (var i=0; i < tickets.Infant; i++){
-            const token = localStorage.getItem('access_token');
-            const decoded = jwtDecode(token);
-
-            const booking = {
-                User_id: decoded.user_id,
-                Ticket_type: "Infant",
-            };
-
-            axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-        }
+                axios.post('http://localhost:8000/tickets/', booking, {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
+                });
+            }
+        });
     };
 
     return (
-    <>
-        <div className="flex flex-col w-screen h-auto bg-gray-300 min-h-screen">
-            <Navigation />
-            <div className="w-full text-6xl text-left p-4 font-heading text-green-600">
-            Tickets Booking:
-            </div>
-            <div className="flex flex-col p-4 space-y-4">
-                <h2 className="text-xl font-bold">Zoo Tickets</h2>
-                {Object.keys(tickets).map((ticketType) => (
-                <div
-                    key={ticketType}
-                    className="flex justify-between items-center bg-green-600 p-4 border-black border-2 rounded-md">
-                    <span className="font-semibold">{ticketType} Tickets</span>
-                    <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-700">
-                        £{ticketPrices[ticketType]} per ticket
-                    </span>
-                    <input
-                        type="number"
-                        className="border p-2 w-20 text-center"
-                        value={tickets[ticketType]}
-                        min="0"
-                        max="10"
-                        onChange={(e) =>
-                            handleTicketChange(ticketType, parseInt(e.target.value) || 0)}/>
+        <>
+            <div className="flex flex-col w-screen h-auto bg-gray-300 min-h-screen">
+                <Navigation />
+                <div className="w-full text-6xl text-left p-4 font-heading text-green-600">
+                    Tickets Booking:
                 </div>
-            </div>
-            ))}
-        </div>
-            <div className="w-full p-4 bg-white border-t-4 border-y-4 border-black mt-4">
-                <h2 className="text-2xl font-bold">Total Price: £{price}</h2>
+                <div className="flex flex-col p-4 space-y-4">
+                    <h2 className="text-xl font-bold">Zoo Tickets</h2>
+                    {Object.keys(tickets).map((ticketType) => (
+                        <div
+                            key={ticketType}
+                            className="flex justify-between items-center bg-green-600 p-4 border-black border-2 rounded-md">
+                            <span className="font-semibold">{ticketType} Tickets</span>
+                            <div className="flex items-center space-x-2">
+                                <span className="text-sm text-gray-700">
+                                    £{ticketPrices[ticketType]} per ticket
+                                </span>
+                                <input
+                                    type="number"
+                                    className="border p-2 w-20 text-center"
+                                    value={tickets[ticketType]}
+                                    min="0"
+                                    max="10"
+                                    onChange={(e) =>
+                                        handleTicketChange(ticketType, parseInt(e.target.value) || 0)}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="w-full p-4 bg-white border-t-4 border-y-4 border-black mt-4">
+                    <h2 className="text-2xl font-bold">Total Price: £{price}</h2>
                     <div className="flex space-x-4 mt-4">
                         <button
                             className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700"
@@ -140,11 +113,10 @@ const Tickets = () => {
                             Reset
                         </button>
                     </div>
+                </div>
             </div>
-        </div>
-    </>
+        </>
     );
 };
 
 export default Tickets;
-
