@@ -26,8 +26,12 @@ const Reservations = () => {
         Suite: 120,
     };
 
-    const [startDate, setStartDate] = useState()
+    const [startDate, setStartDate] = useState(new Date().toJSON().slice(0, 10))
     const [endDate, setEndDate] = useState()
+
+    var date = new Date(startDate)
+    date.setDate(date.getDate() + 2);
+    const newDate = date.toJSON().slice(0, 10)
 
     const handleHotelChange = (ticketType, value) => {
         if (value >= 0) {
@@ -49,24 +53,23 @@ const Reservations = () => {
         });
         setPrice(0);
     };
-
+    
     const checkout = () => {
+        const token = localStorage.getItem('access_token');
+        const decoded = jwtDecode(token);
 
-        const totalRooms = roomtypes.Single + roomtypes.Double + roomtypes.Suite
-
-        for (var i=0; i < totalRooms; i++){
-            const token = localStorage.getItem('access_token');
-            const decoded = jwtDecode(token);
-
-            const booking = {
-                User_id: decoded.user_id,
-                Room_type: "Single",
-                Start_Date: startDate,
-                End_Date: endDate,
-            };
-
-            axios.post('http://localhost:8000/hotels/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-        }
+        Object.keys(roomtypes).forEach(roomType => {
+            for (let i = 0; i < roomtypes[roomType]; i++) {
+                const booking = {
+                    User_id: decoded.user_id,
+                    Room_type: roomType,
+                    Start_Date: startDate,
+                    End_Date: endDate,
+                };
+                axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
+                axios.post('http://localhost:8000/hotels/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+            }
+        });
     };
 
     return ( 
@@ -108,7 +111,8 @@ const Reservations = () => {
             <input
                 type="date"
                 className="border p-2 w-full text-center"
-                min={new Date().toJSON().slice(0, 10)}
+                min={startDate}
+                max={newDate}
                 onChange={(e) => setEndDate(e.target.value)}/>
         </div>
         </div>

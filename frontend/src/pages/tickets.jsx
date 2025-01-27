@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../component/navigation";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"
 import axios from "axios";
 
 const Tickets = () => {
@@ -59,11 +59,8 @@ const Tickets = () => {
                     User_id: decoded.user_id,
                     Ticket_type: ticketType,
                 };
-
-                axios.post('http://localhost:8000/tickets/', booking, {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true,
-                });
+                axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
+                axios.post('http://localhost:8000/tickets/', booking, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
             }
         });
     };
