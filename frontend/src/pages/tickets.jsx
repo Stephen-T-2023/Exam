@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../component/navigation";
 import { jwtDecode } from "jwt-decode"
-import { v1 as uuidv4 } from "uuid"
 import axios from "axios";
 
 const Tickets = () => {
@@ -13,7 +12,6 @@ const Tickets = () => {
             window.location.href = '/login'
         }
         axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
-        // setTicket_ID(uuidv4());
         }, []);
 
     const [tickets, setTickets] = useState({

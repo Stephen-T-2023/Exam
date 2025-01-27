@@ -37,3 +37,8 @@ class TicketBookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = TicketBooking
         fields = ["User_id", "Ticket_id", "Ticket_type"]
+
+class HotelBookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HotelBooking
+        fields = ["User_id", "Reservation_id", "Room_type", "Start_Date", "End_Date"]

@@ -9,6 +9,7 @@ const Home = () => {
         if(localStorage.getItem('access_token') === null){                   
             window.location.href = '/login'
         }
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("access_token")}`;
         }, []);
 
     return (  

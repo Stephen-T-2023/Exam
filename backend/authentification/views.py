@@ -51,3 +51,18 @@ class TicketBookingView(APIView):
         if serializer.is_valid(raise_exception = True):
             serializer.save()
             return Response(serializer.data)
+
+class HotelBookingView(APIView):
+    permission_classes = (IsAuthenticated, )
+    serializer_class = HotelBookingSerializer
+
+    def get(self, request):
+
+        hotel_id = [{"User_id": hotel_id.User_id, "Reservation_id": hotel_id.Reservation_id, "Room_type": hotel_id.Room_type, "Start_Date": hotel_id.Start_Date, "End_Date": hotel_id.End_Date} for hotel_id in HotelBooking.objects.all()]
+        return Response(hotel_id)
+
+    def post(self, request):
+        serializer = HotelBookingSerializer(data=request.data)
+        if serializer.is_valid(raise_exception = True):
+            serializer.save()
+            return Response(serializer.data)
