@@ -42,8 +42,8 @@ class TicketBookingView(APIView):
     serializer_class = TicketBookingSerializer
 
     def get(self, request):
-
-        ticket_id = [{"User_id": ticket_id.User_id, "Ticket_id": ticket_id.Ticket_id, "Ticket_type": ticket_id.Ticket_type} for ticket_id in TicketBooking.objects.all()]
+        user = request.user.id
+        ticket_id = [{"User_id": ticket_id.User_id, "Ticket_id": ticket_id.Ticket_id, "Ticket_type": ticket_id.Ticket_type} for ticket_id in TicketBooking.objects.filter(User_id=user)]
         return Response(ticket_id)
 
     def post(self, request):
@@ -57,8 +57,8 @@ class HotelBookingView(APIView):
     serializer_class = HotelBookingSerializer
 
     def get(self, request):
-
-        hotel_id = [{"User_id": hotel_id.User_id, "Reservation_id": hotel_id.Reservation_id, "Room_type": hotel_id.Room_type, "Start_Date": hotel_id.Start_Date, "End_Date": hotel_id.End_Date} for hotel_id in HotelBooking.objects.all()]
+        user = request.user.id
+        hotel_id = [{"User_id": hotel_id.User_id, "Reservation_id": hotel_id.Reservation_id, "Room_type": hotel_id.Room_type, "Start_Date": hotel_id.Start_Date, "End_Date": hotel_id.End_Date} for hotel_id in HotelBooking.objects.filter(User_id=user)]
         return Response(hotel_id)
 
     def post(self, request):
