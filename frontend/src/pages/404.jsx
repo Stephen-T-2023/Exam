@@ -1,0 +1,11 @@
+const FourZeroFour = () => {
+    return ( 
+        <>
+            <div>
+                404 Error
+            </div>
+        </>
+     );
+}
+ 
+export default FourZeroFour;

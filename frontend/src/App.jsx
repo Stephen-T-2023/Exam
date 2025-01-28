@@ -10,6 +10,7 @@ import Map from './pages/map.jsx';
 import About from './pages/about.jsx';
 import Tickets from './pages/tickets.jsx';
 import Reservations from './pages/reservation.jsx';
+import FourZeroFour from './pages/404.jsx'
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/about" element={<About/>}/>
           <Route path="/zooBooking" element={<Tickets/>}/>
           <Route path="/hotelReservation" element={<Reservations/>}/>
+          <Route path='*' element={<FourZeroFour/>}/>
         </Routes>
       </BrowserRouter>
     )
