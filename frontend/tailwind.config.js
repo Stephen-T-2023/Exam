@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        spin: 'spin 1s linear infinite',
+      },
       backgroundImage: {
         zooEntrance: "url(./src/assets/zooEntrance.jpg)",
       },

@@ -11,6 +11,8 @@ import About from './pages/about.jsx';
 import Tickets from './pages/tickets.jsx';
 import Reservations from './pages/reservation.jsx';
 import FourZeroFour from './pages/404.jsx'
+import Search from './pages/search.jsx';
+import AnimalDetails from './pages/animaldetails.jsx';
 
 function App() {
     return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/bookingchoice" element={<BookingChoice/>}/>
           <Route path="/manage" element={<Manage/>}/>
           <Route path="/map" element={<Map/>}/>
+          <Route path="/search" element={<Search/>}/>
+          <Route path="/animaldetails" element={<AnimalDetails/>}/>
           <Route path="/about" element={<About/>}/>
           <Route path="/zooBooking" element={<Tickets/>}/>
           <Route path="/hotelReservation" element={<Reservations/>}/>
