@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../interceptors/axios"
 import {useState} from "react";
 import Nav from 'react-bootstrap/Nav';
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../interceptors/axios"
 import Navigation from "../component/navigation";
 
 const Home = () => {

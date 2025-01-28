@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../component/navigation";
 import { jwtDecode } from "jwt-decode"
-import axios from "axios";
+import axios from "../interceptors/axios"
 
 const Tickets = () => {
     useEffect(() => {

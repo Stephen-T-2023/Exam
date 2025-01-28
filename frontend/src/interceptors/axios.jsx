@@ -9,6 +9,8 @@ axios.interceptors.response.use(resp => resp, async error => {
         if (response.status === 200) {axios.defaults.headers.common['Authorization'] = `Bearer ${response.data['access']}`;localStorage.setItem('access_token', response.data.access);localStorage.setItem('refresh_token', response.data.refresh);return axios(error.config);
         }
     }
-refresh = false;
-return error;
-});
+    refresh = false;
+    return error;
+    });
+
+export default axios;
