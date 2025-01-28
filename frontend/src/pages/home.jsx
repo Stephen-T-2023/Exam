@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navigation from "../component/navigation";
-import { jwtDecode } from "jwt-decode"
 
 const Home = () => {
 

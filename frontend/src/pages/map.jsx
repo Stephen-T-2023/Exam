@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Navigation from "../component/navigation";
 
 const Map = () => {
 
@@ -10,8 +11,11 @@ const Map = () => {
         });
 
     return ( 
-        <div>Map</div>
-     );
+        <>
+            <Navigation/>
+            <div>Map</div>
+        </>
+    );
 }
- 
+
 export default Map;
