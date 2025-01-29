@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode"
 import axios from "../interceptors/axios"
 
 const Tickets = () => {
+    // use effect to make sure the user is logged in
     useEffect(() => {
         if (localStorage.getItem('access_token') === null) {
             window.location.href = '/login';
@@ -27,6 +28,7 @@ const Tickets = () => {
         Infant: 0,
     };
 
+    // increases the total price along with increasing the ticket counter dynamically
     const handleTicketChange = (ticketType, value) => {
         if (value >= 0) {
             const updatedTickets = { ...tickets, [ticketType]: value };
@@ -49,6 +51,7 @@ const Tickets = () => {
         setPrice(0);
     };
 
+    // Sends a post request to the backend to store all of the users tickets in the database
     const checkout = () => {
         const token = localStorage.getItem('access_token');
         const decoded = jwtDecode(token);

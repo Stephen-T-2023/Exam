@@ -21,7 +21,7 @@ const Map = () => {
             <div className="flex-shrink-0">
                 <Navigation />
             </div>
-            <div className="relative flex-grow bg-zooEntrance bg-no-repeat bg-cover">
+            <div className="relative flex-grow bg-Map bg-no-repeat bg-cover">
                 <div className="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-lg w-80">
                     <label htmlFor="animal-search" className="block text-gray-800 font-bold mb-2">
                         Search for an Animal:

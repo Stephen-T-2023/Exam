@@ -17,6 +17,7 @@ import AnimalDetails from './pages/animaldetails.jsx';
 function App() {
     return (
       <BrowserRouter>
+        {/* Page routing for the app with a catch in case there is no available page */}
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>

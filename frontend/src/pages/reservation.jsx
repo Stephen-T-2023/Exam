@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode"
 
 const Reservations = () => {
 
+    // use effect to make sure the user is logged in
     useEffect(() => {
         if(localStorage.getItem('access_token') === null){                   
             window.location.href = '/login'
@@ -33,6 +34,7 @@ const Reservations = () => {
     date.setDate(date.getDate() + 2);
     const newDate = date.toJSON().slice(0, 10)
 
+    // increases the total price along with increasing the room counter dynamically
     const handleHotelChange = (ticketType, value) => {
         if (value >= 0) {
             const updatedTickets = { ...roomtypes, [ticketType]: value };
@@ -54,6 +56,7 @@ const Reservations = () => {
         setPrice(0);
     };
     
+    // Sends a post request to the backend to store all of the users room reservations in the database
     const checkout = () => {
         const token = localStorage.getItem('access_token');
         const decoded = jwtDecode(token);

@@ -3,10 +3,7 @@ import Navigation from "../component/navigation";
 const FourZeroFour = () => {
     return (
         <div className="flex flex-col w-full h-screen bg-green-100">
-            {/* Navigation Bar */}
             <Navigation />
-            
-            {/* Content */}
             <div className="flex flex-col items-center justify-center flex-grow p-6 space-y-6">
                 <div className="text-center">
                     <h1 className="text-6xl font-bold text-green-600">404</h1>

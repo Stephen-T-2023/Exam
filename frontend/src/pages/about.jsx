@@ -4,6 +4,7 @@ import Navigation from "../component/navigation";
 const About = () => {
 
     useEffect(() => {
+        // make sure the user is plugged in
         if(localStorage.getItem('access_token') === null){                   
             window.location.href = '/login'
         }

@@ -10,6 +10,7 @@ const Search = () => {
     const query = searchParams.get("query");
     const apiKey = import.meta.env.VITE_API_KEY;
 
+    // Uses the search from the map page to get the list of animals and presents them to the user with the option to learn more
     useEffect(() => {
         const fetchAnimalData = async () => {
             if (!query) return;

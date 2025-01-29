@@ -6,35 +6,41 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
             
-        const user = {
-            email : email,
-            password: password
-        };
+        try {
+            const user = {
+                email : email,
+                password: password
+            };
 
-        const {data} = await axios.post('http://localhost:8000/token/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
-        console.log(data)
-        localStorage.clear();
-        localStorage.setItem("access_token", data.access);
-        localStorage.setItem("refresh_token", data.refresh);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`;
-    
-        window.location.href = '/'
+            const {data} = await axios.post('http://localhost:8000/token/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+            console.log(data)
+            localStorage.clear();
+            localStorage.setItem("access_token", data.access);
+            localStorage.setItem("refresh_token", data.refresh);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`;
+        
+            window.location.href = '/'
+        } catch {
+            setError("A username or password is incorrect, Please try again.")
+        }
 
     };
 
     return (  
         <>
             <div className="flex flex-col w-full h-screen bg-gray-400">
-                <div className="w-full h-1/3 bg-zooEntrance bg-no-repeat bg-cover rounded-b-xl">
+                <div className="w-full h-1/3 bg-Logo bg-center bg-no-repeat bg-cover rounded-b-xl">
                 </div>
                 <div className="w-full h-2/3 p-6 rounded-t-xl">
                     <div className="flex justify-center text-3xl font-bold text-green-600 mb-6">
                         Login
                     </div>
+                    <p className="text-red-600 text-center">{error}</p>
                     <form className="flex flex-col items-center space-y-4 text-lg">
                         <div className="w-full">
                             <label for="email" class="block text-lg font-medium text-gray-700">Email:</label>

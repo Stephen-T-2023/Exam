@@ -11,6 +11,10 @@ export default {
       },
       backgroundImage: {
         zooEntrance: "url(./src/assets/zooEntrance.jpg)",
+        Map: "url(./src/assets/Map.jpg)",
+        Ticket: "url(./src/assets/Ticket.jpg)",
+        Hotel: "url(./src/assets/Hotel.jpg)",
+        Logo: "url(./src/assets/Logo.png)",
       },
       fontFamily: {
         heading: ["Changa", "sans-serif"],

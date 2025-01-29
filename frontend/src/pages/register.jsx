@@ -3,12 +3,13 @@ import axios from "../interceptors/axios"
 import Nav from 'react-bootstrap/Nav';
 
 const Register = () => {
-
+	const [error, setError] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
 	const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
 	
+	// sends the new user registration details to the backend
     const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -19,10 +20,13 @@ const Register = () => {
 			password2: password2
 		}
 
-        const {data} = await axios.post('http://localhost:8000/register/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
+		const {data} = await axios.post('http://localhost:8000/register/', user, {headers: {'Content-Type': 'application/json'}}, {withCredentials: true});
 
-        window.location.href = '/login'
-
+		if (data == null){
+			setError("Some fields are incorrect or missing, Please try again.")
+		} else {
+			window.location.href = '/login'
+		}
 	};
 
     return ( 
@@ -35,6 +39,7 @@ const Register = () => {
 					<div className="flex justify-center text-3xl font-bold text-green-600 mb-6">
 						Register
 					</div>
+					<p className="text-red-600 text-center">{error}</p>
 					<form className="flex flex-col items-center space-y-4 text-lg">
 						<div className="w-full">
 							<label for="username" class="block text-lg font-medium text-gray-700">Username:</label>
