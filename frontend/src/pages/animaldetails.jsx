@@ -10,6 +10,7 @@ const AnimalDetails = () => {
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
     const animalName = queryParams.get("name");
+    const apiKey = import.meta.env.VITE_API_KEY
 
     useEffect(() => {
         if (!animalName) {
@@ -23,7 +24,7 @@ const AnimalDetails = () => {
                 setLoading(true);
                 const response = await fetch(`https://api.api-ninjas.com/v1/animals?name=${animalName}`, {
                     headers: {
-                        "X-Api-Key": "DedjPlwuUfCzi0VNR5LlXg==NaRcMBXrSLcAfY32",
+                        "X-Api-Key": {apiKey},
                     },
                 });
 
@@ -106,7 +107,7 @@ const AnimalDetails = () => {
                             <strong>Location:</strong> {animalDetails.locations}
                         </li>
                         <li className="p-4 bg-gray-200 rounded-md text-gray-800 shadow-sm">
-                            <strong>Dinsinctive Features:</strong> {animalDetails.characteristics.distinctive_feature}
+                            <strong>Distinctive Features:</strong> {animalDetails.characteristics.distinctive_feature}
                         </li>
                         <li className="p-4 bg-gray-200 rounded-md text-gray-800 shadow-sm">
                             <strong>Top Speed:</strong> {animalDetails.characteristics.top_speed}

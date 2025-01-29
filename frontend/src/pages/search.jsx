@@ -8,7 +8,7 @@ const Search = () => {
     const [animalData, setAnimalData] = useState([]);
     const [loading, setLoading] = useState(false);
     const query = searchParams.get("query");
-    const apiKey = "DedjPlwuUfCzi0VNR5LlXg==NaRcMBXrSLcAfY32";
+    const apiKey = import.meta.env.VITE_API_KEY;
 
     useEffect(() => {
         const fetchAnimalData = async () => {
@@ -63,9 +63,6 @@ const Search = () => {
                                         </h3>
                                         <p className="text-gray-600">{animal.latin_name}</p>
                                         <p className="text-gray-600">{animal.classification}</p>
-                                        <p className="text-gray-600">
-                                            {animal.diet ? `Diet: ${animal.diet}` : "Diet: N/A"}
-                                        </p>
                                         <a href={`/animaldetails?name=${animal.name}`} className="text-blue-500 hover:underline mt-2 block">
                                             Learn More
                                         </a>
