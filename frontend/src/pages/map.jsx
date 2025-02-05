@@ -16,6 +16,12 @@ const Map = () => {
         }
     };
 
+    const handleKeyPress = (event) => {
+        if (event.keyCode === 13 || event.which === 13) {
+            handleSearch()
+        }
+    }
+
     return (
         <div className="w-full h-screen flex flex-col overflow-hidden">
             <div className="flex-shrink-0">
@@ -33,8 +39,9 @@ const Map = () => {
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
                             placeholder="Enter animal name..."
-                            className="flex-grow p-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-green-300"/>
-                        <button onClick={handleSearch} className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all">
+                            className="flex-grow p-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-green-300"
+                            onKeyDown={handleKeyPress}/>
+                        <button onClick={handleSearch} onKeyDown={e => e.key === 'Enter' ? handleSearch : ''} className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all">
                             Search
                         </button>
                     </div>
